@@ -1,12 +1,5 @@
-function TabBtn() {
-  return (
-    <div className="container">
-      <h2></h2>
-      <li>
-        <ul>ABC</ul>
-      </li>
-    </div>
-  );
+function TabBtn({ children, onSelect }) {
+  return <button onClick={onSelect}>{children}</button>;
 }
 
 export default TabBtn;

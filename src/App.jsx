@@ -2,9 +2,15 @@ import { useState } from "react";
 import reactLogo from "./assets/react.svg";
 import viteLogo from "/vite.svg";
 import "./App.css";
+import TabBtn from "./components/TabBtn/TabBtn";
+import { EXAMPLES } from "./data";
 
 function App() {
-  const [count, setCount] = useState(0);
+  const [selectedTopic, setSelectedTopic] = useState("components");
+
+  function handleSelect(selectedBtn) {
+    setSelectedTopic(selectedBtn);
+  }
 
   return (
     <>
@@ -16,18 +22,47 @@ function App() {
           <img src={reactLogo} className="logo react" alt="React logo" />
         </a>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
+      <h1>Section 3</h1>
+      <section id="examples">
+        <h2>Examples</h2>
+        <menu>
+          <TabBtn
+            onSelect={() => {
+              handleSelect("components");
+            }}
+          >
+            Components
+          </TabBtn>
+          <TabBtn
+            onSelect={() => {
+              handleSelect("jsx");
+            }}
+          >
+            JSX
+          </TabBtn>
+          <TabBtn
+            onSelect={() => {
+              handleSelect("props");
+            }}
+          >
+            Props
+          </TabBtn>
+          <TabBtn
+            onSelect={() => {
+              handleSelect("state");
+            }}
+          >
+            State
+          </TabBtn>
+        </menu>
+      </section>
+      <div>
+        <h3>{EXAMPLES[selectedTopic].title}</h3>
+        <p>{EXAMPLES[selectedTopic].description}</p>
+        <pre>
+          <code>{EXAMPLES[selectedTopic].code}</code>
+        </pre>
       </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
     </>
   );
 }
