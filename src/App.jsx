@@ -6,7 +6,7 @@ import TabBtn from "./components/TabBtn/TabBtn";
 import { EXAMPLES } from "./data";
 
 function App() {
-  const [selectedTopic, setSelectedTopic] = useState("components");
+  const [selectedTopic, setSelectedTopic] = useState(null);
 
   function handleSelect(selectedBtn) {
     setSelectedTopic(selectedBtn);
@@ -56,13 +56,17 @@ function App() {
           </TabBtn>
         </menu>
       </section>
-      <div>
-        <h3>{EXAMPLES[selectedTopic].title}</h3>
-        <p>{EXAMPLES[selectedTopic].description}</p>
-        <pre>
-          <code>{EXAMPLES[selectedTopic].code}</code>
-        </pre>
-      </div>
+      {!selectedTopic ? (
+        <p>Please select a topic</p>
+      ) : (
+        <div>
+          <h3>{EXAMPLES[selectedTopic].title}</h3>
+          <p>{EXAMPLES[selectedTopic].description}</p>
+          <pre>
+            <code>{EXAMPLES[selectedTopic].code}</code>
+          </pre>
+        </div>
+      )}
     </>
   );
 }
